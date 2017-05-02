@@ -1,25 +1,6 @@
-<!DOCTYPE html>
-<html ng-app="listaProdutos">
-<head>
-	<title>ListaProdutos</title>
-	<link rel="stylesheet" type="text/css" href="libs/uikit/css/uikit.min.css">
-	<link rel="stylesheet" type="text/css" href="libs/uikit/css/css.css">
-	<script src="libs/angular.js"></script>
-	<script src="js/app.js"></script>
-	<script src="js/controllers/listaProdutosctrl.js"></script>
 
-</head>
-<body>
-		<div>
-			<nav class="uk-navbar-container uk-margin" uk-navbar>
-			    <div class="uk-navbar-left">
-			        <a class="uk-navbar-item uk-logo" href="#"> <img src="/home/cesar/FRONT-END_DEV/try/angularLprodutos/libs/uikit/img/logops.png" width="160px"> </a>
-			        
-			    </div>
-			</nav>
-		</div>
-		<div ng-controller="listaProdutosctrl"> 
-			<div >
+
+		<div >
 			<div class="uk-container uk-container-expand">
 				<h3 ng-bind="tt"></h3>
 				<input class="" type="text" ng-model="busca" placeholder="Pesquisar aqui">	
@@ -43,6 +24,3 @@
 				</table>
 			</div>
 		</div>
-		</div>
-		
-</html>
