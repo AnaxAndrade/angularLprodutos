@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html ng-app="ListaProdutos">
+<head>
+	<title>ListaProdutos</title>
+	<link rel="stylesheet" type="text/css" href="libs/uikit/css/uikit.min.css">
+	<link rel="stylesheet" type="text/css" href="libs/uikit/css/css.css">
+	<script src="libs/angular.js"></script>
+
+<script>
+	angular.module("ListaProdutos",[]);
+	angular.module("ListaProdutos").controller("ListaProdutosctrl", function ($scope, $http) {
+		var self = this;
+		$scope.tt = "Lista De Produtos";
+		$scope.produtos=[];
+		var carregarProdutos = function (){
+			$http.get('http://anax.online:1337').then( function (response){
+				$scope.produtos = response.data;
+			});
+		};
+
+		$scope.ordenarPor = function (campo){
+			$scope.criterioOrdenacao = campo;
+			$scope.inverterOrdenacao = !$scope.inverterOrdenacao;
+		};
+		carregarProdutos();
+	});
+</script>
+
+</head>
+<body>
+
+		<div>
+			<nav class="uk-navbar-container uk-margin" uk-navbar>
+			    <div class="uk-navbar-left">
+			        <a class="uk-navbar-item uk-logo" href="#"> <img src="/home/cesar/FRONT-END_DEV/try/angularLprodutos/libs/uikit/img/logops.png" width="160px"> </a>
+			        
+			    </div>
+			</nav>
+		</div>
+
+		<div ng-controller="ListaProdutosctrl">
+			<div class="uk-container uk-container-expand">
+				<h3 ng-bind="tt"></h3>
+				<input class="" type="text" ng-model="busca" placeholder="Pesquisar aqui">	
+				<table class="uk-table uk-table-hover uk-table-striped ">
+					<tr>
+						<th></th>
+						<th></th>
+						<th> <a href="" ng-click="ordenarPor('nome')">NOME</a></th>
+						<th> <a href="" ng-click="ordenarPor('preco')">PREÇO</a> </th>
+						<th> <a href="" ng-click="ordenarPor('quantidade')">QUANTIDADE</a> </th>
+						<th>MARCA</th>
+					</tr>
+					<tr ng-repeat="produto in produtos | filter:busca |orderBy:criterioOrdenacao:inverterOrdenacao">
+						<td> <input class="uk-checkbox" type="checkbox" name=""> </td>
+						<td><img class="uk-preserve-width uk-border-circle" src="/home/cesar/FRONT-END_DEV/try/angularLprodutos/libs/uikit/img/pos1.jpg" width="60" alt=""></td>
+						<td>{{produto.nome }}</td>
+						<td>{{produto.preco}}</td>
+						<td>{{produto.quantidade}}</td>
+						<td>{{produto.marca}}</td>
+					</tr>
+				</table>
+			</div>
+
+		</div>
+</body>
+</html>
